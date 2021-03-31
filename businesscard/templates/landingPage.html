@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header %}
+<nav class="navbar navbar-default" style="background-color:#6610f2">
+  <div class="container-fluid">
+  <div class="navbar-header">
+    <b><a class="navbar-brand" href="#" style="color:#ffffff;font-size: 23px;">Login</a></b>
+  </div>
+</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12 bg-white container">
+    <form action="" method="post" id="login-form" @submit.prevent="submitForm()">
+      {% csrf_token %}
+      <input type="hidden" id="login_url" value="{% url 'loginuser' %}">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" id="username" required>
+          </div>
+          <div class="col-md-6">
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+          </div>
+          <div class="col-md-4">
+            <button id="login-button" type="submit">Login</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+
+  <!-- Content -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 bg-white container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" style="margin-top: 3%;">
+          <label>
+            Not A User?
+          </label>
+        </div>
+        <div class="col-md-4">
+          <button type="button" id="signup-button" @click="goToSignUp()" url_id="{% url 'signup' %}">Signup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

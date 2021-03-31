@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block header %}
+<nav class="navbar navbar-default" style="background-color:#6610f2">
+  <div class="container-fluid">
+  <div class="navbar-header">
+    <b><a class="navbar-brand" href="#" style="color:#ffffff;font-size: 23px;">SignIn</a></b>
+  </div>
+</div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 bg-white container">
+        <form action="" method="post">
+            <div class="container">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="col-md-4">
+                <button type="submit">Submit</button>
+            </div>
+            <div class="col-md-12">
+                {{ error }}
+               </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
