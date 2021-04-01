@@ -3,10 +3,6 @@ boto==2.49.0
 boto3==1.7.4
 botocore==1.10.4
 Django==1.10.8
-django-advanced-filters @ https://github.com/modlinltd/django-advanced-filters/archive/3fc6b964c48c38fff6169f55f2c26325aa926dfb.zip
-django-braces==1.14.0
-django-environ==0.4.5
-django-s3direct==1.1.8
 django-storages==1.6.6
 django-utils-six==2.0
 djangorestframework==3.8.2
