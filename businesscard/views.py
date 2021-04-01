@@ -9,8 +9,10 @@ from django.urls import reverse
 from django.contrib.auth import authenticate,login as d_login
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
+import time
 
 from django.contrib.auth.decorators import login_required
+from .storage import PrivateMediaStorage
 # Create your views here.
 
 
@@ -74,6 +76,10 @@ def update_profile(request):
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
+            fileObj = request.FILES.get('profile_picture')
+            if(fileObj):
+                mediaStorage = PrivateMediaStorage()
+                mediaStorage.save('hi',fileObj)
             user = User.objects.get(username=request.user)
             user.first_name = request.POST.get('first_name')
             user.last_name = request.POST.get('last_name')

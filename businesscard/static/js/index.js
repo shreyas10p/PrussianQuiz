@@ -30,3 +30,10 @@ const loginpost = new Vue({
         }
     }
 })
+
+const app = new Vue({
+    el: 'input#id_birth_date',
+    components: {
+        vuejsDatepicker
+    }
+  })

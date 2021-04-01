@@ -2,13 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from .storage import PrivateMediaStorage
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     phone_number = models.BigIntegerField(null=True,blank=True)
-    profile_picture = models.CharField(max_length=500,blank=True)
+    employer = models.CharField(max_length=200,blank=True)
+    job_title = models.CharField(max_length=200,blank=True)
+    profile_picture = models.ImageField(storage = PrivateMediaStorage())
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

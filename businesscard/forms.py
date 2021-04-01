@@ -13,10 +13,10 @@ class UserForm(UserCreationForm):
         fields = ('first_name', 'last_name','username' , 'email' ,'password1', 'password2')
 
 class ProfileForm(forms.ModelForm):
-
+    birth_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Profile
-        fields = ('phone_number','location','birth_date','profile_picture')
+        fields = ('phone_number','location','birth_date','employer','job_title')
 
 class UpdateUserForm(UserForm):
     def __init__(self, *args, **kwargs):
