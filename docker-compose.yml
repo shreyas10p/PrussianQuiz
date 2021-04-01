@@ -6,7 +6,6 @@ services:
         context: .
         dockerfile: docker/server.development.dockerfile
     command: python manage.py runserver 0.0.0.0:8000
-    environment:
-      - APP=server1
+    volumes: ['.:/var/www']
     ports:
       - "8000:8000"
