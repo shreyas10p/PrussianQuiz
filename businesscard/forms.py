@@ -16,7 +16,15 @@ class ProfileForm(forms.ModelForm):
     birth_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Profile
-        fields = ('phone_number','location','birth_date','employer','job_title')
+        fields = ('phone_number','location','birth_date','profile_picture','employer','job_title')
+
+    def save(self,image_id=None,commit=True):
+        profile = super(ProfileForm, self).save(commit=False)
+        profile.profile_picture = image_id
+        if(commit):
+            profile.save()
+        return profile
+
 
 class UpdateUserForm(UserForm):
     def __init__(self, *args, **kwargs):

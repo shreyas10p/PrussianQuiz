@@ -13,6 +13,9 @@ import time
 
 from django.contrib.auth.decorators import login_required
 from .storage import PrivateMediaStorage
+import datetime
+from uuid import uuid4
+from .utils import generate_image_id
 # Create your views here.
 
 
@@ -79,13 +82,16 @@ def update_profile(request):
             fileObj = request.FILES.get('profile_picture')
             if(fileObj):
                 mediaStorage = PrivateMediaStorage()
-                mediaStorage.save('hi',fileObj)
+                image_id = generate_image_id()
+                mediaStorage.save(image_id,fileObj)
+            else:
+                image_id = None
             user = User.objects.get(username=request.user)
             user.first_name = request.POST.get('first_name')
             user.last_name = request.POST.get('last_name')
             user.username = request.POST.get('username')
             user.save()
-            profile_form.save()
+            profile_form.save(image_id)
             messages.success(request, ('Your profile was successfully updated!'))
             return HttpResponseRedirect(request.path_info)
         else:
@@ -97,3 +103,4 @@ def update_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
