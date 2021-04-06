@@ -5,7 +5,6 @@ from django.dispatch import receiver
 from .storage import PrivateMediaStorage
 from .utils import generate_image_id
 
- 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
