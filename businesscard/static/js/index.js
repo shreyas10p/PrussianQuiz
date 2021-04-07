@@ -36,4 +36,6 @@ const app = new Vue({
     components: {
         vuejsDatepicker
     }
+    
   })
+

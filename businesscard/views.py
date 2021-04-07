@@ -99,6 +99,8 @@ def update_profile(request):
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
+        if(profile_form.initial['birth_date'] is None):
+            profile_form.fields.pop('age')
     return render(request, 'home.html', {
         'user_form': user_form,
         'profile_form': profile_form

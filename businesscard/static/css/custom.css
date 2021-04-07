@@ -67,6 +67,11 @@ button {
   a {
     color: #007bff;
   }
+
+  a.head{
+    color:#FFF;
+
+  }
   .icon {
     margin-right: 16px/2;
   }

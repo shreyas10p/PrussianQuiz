@@ -12,13 +12,19 @@ class UserForm(UserCreationForm):
         model = User
         fields = ('first_name', 'last_name','username' , 'email' ,'password1', 'password2')
 
-class ProfileForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):#ProfileForm([])
     birth_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
+    age = forms.CharField(label = 'age', disabled=True,required=False)
     class Meta:
         model = Profile
         fields = ('phone_number','location','birth_date','profile_picture','employer','job_title')
+    
+    def __init__(self, *args, **kwargs):
+        profile = super(ProfileForm, self).__init__(*args, **kwargs)
+        self.initial['age'] = kwargs['instance'].get_age()
 
     def save(self,image_id=None,commit=True):
+        print("here")
         profile = super(ProfileForm, self).save(commit=False)
         profile.profile_picture = image_id
         if(commit):
